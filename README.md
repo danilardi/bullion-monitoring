@@ -1,10 +1,32 @@
 # Bullion Monitoring
-# Dashboard Monitoring & Analisis Data
 
-Selamat datang di Repositori Dashboard Admin untuk Monitoring & Analisis Data. Dashboard ini adalah alat yang kuat untuk membantu Anda memantau dan menganalisis data bisnis dengan mudah.
+Welcome to the Admin Dashboard Repository for Data Monitoring & Analysis. This dashboard is a powerful tool to help you monitor and analyze business data easily.
 
-## Fitur Utama
+## Main feature
 
-- **Visualisasi Data**: Menampilkan data dengan berbagai jenis visualisasi seperti grafik dan tabel.
-- **Integrasi Data**: Integrasi dengan berbagai sumber data untuk melihat data dari berbagai sumber dalam satu tampilan.
-- **Analisis Lanjutan**: Filter, pencarian, dan penghitungan data untuk analisis yang lebih dalam.
+- **Data Visualization**: Display data with various types of visualization such as graphs and tables.
+- **Data Integration**: Integration with various data sources to view data from various sources in one view.
+- **Advanced Analytics**: Filter, search and calculate data for deeper analysis.
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+
+
+
+
