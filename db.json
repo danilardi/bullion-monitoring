@@ -1,0 +1,232 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "new basic users",
+      "data": [
+        {
+          "id": 1,
+          "platform": "MetalGO",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "100"
+            },
+            {
+              "time" : "Februari",
+              "total" : "200"
+            },
+            {
+              "time" : "Maret",
+              "total" : "300"
+            },
+            {
+              "time" : "April",
+              "total" : "400"
+            },
+            {
+              "time" : "Mei",
+              "total" : "500"
+            },
+            {
+              "time" : "Juni",
+              "total" : "600"
+            },
+            {
+              "time" : "Juli",
+              "total" : "700"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "800"
+            },
+            {
+              "time" : "September",
+              "total" : "900"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "1000"
+            },
+            {
+              "time" : "November",
+              "total" : "1100"
+            },
+            {
+              "time" : "Desember",
+              "total" : "1200"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "platform": "PosPayGold",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "200"
+            },
+            {
+              "time" : "Februari",
+              "total" : "200"
+            },
+            {
+              "time" : "Maret",
+              "total" : "300"
+            },
+            {
+              "time" : "April",
+              "total" : "400"
+            },
+            {
+              "time" : "Mei",
+              "total" : "500"
+            },
+            {
+              "time" : "Juni",
+              "total" : "600"
+            },
+            {
+              "time" : "Juli",
+              "total" : "700"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "800"
+            },
+            {
+              "time" : "September",
+              "total" : "900"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "1000"
+            },
+            {
+              "time" : "November",
+              "total" : "1100"
+            },
+            {
+              "time" : "Desember",
+              "total" : "1200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "new full users",
+      "data": [
+        {
+          "id": 1,
+          "platform": "MetalGO",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "300"
+            },
+            {
+              "time" : "Februari",
+              "total" : "200"
+            },
+            {
+              "time" : "Maret",
+              "total" : "300"
+            },
+            {
+              "time" : "April",
+              "total" : "400"
+            },
+            {
+              "time" : "Mei",
+              "total" : "500"
+            },
+            {
+              "time" : "Juni",
+              "total" : "600"
+            },
+            {
+              "time" : "Juli",
+              "total" : "700"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "800"
+            },
+            {
+              "time" : "September",
+              "total" : "900"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "1000"
+            },
+            {
+              "time" : "November",
+              "total" : "1100"
+            },
+            {
+              "time" : "Desember",
+              "total" : "1200"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "platform": "PosPayGold",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "400"
+            },
+            {
+              "time" : "Februari",
+              "total" : "200"
+            },
+            {
+              "time" : "Maret",
+              "total" : "300"
+            },
+            {
+              "time" : "April",
+              "total" : "400"
+            },
+            {
+              "time" : "Mei",
+              "total" : "500"
+            },
+            {
+              "time" : "Juni",
+              "total" : "600"
+            },
+            {
+              "time" : "Juli",
+              "total" : "700"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "800"
+            },
+            {
+              "time" : "September",
+              "total" : "900"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "1000"
+            },
+            {
+              "time" : "November",
+              "total" : "1100"
+            },
+            {
+              "time" : "Desember",
+              "total" : "1200"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

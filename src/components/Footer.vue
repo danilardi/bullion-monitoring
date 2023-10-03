@@ -2,7 +2,7 @@
 
 <template>
   <footer class="footer">
-    <div class="col text-center">2023 Copyright CrackEarth</div>
+    <div class="col text-center">2023 Copyright Bullion</div>
   </footer>
 </template>
 
