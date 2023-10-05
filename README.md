@@ -26,6 +26,11 @@ npm run dev
 npm run build
 ```
 
+## Run Dummy JSON
+```sh
+json-server --watch db.json --port 3000
+```
+
 
 
 

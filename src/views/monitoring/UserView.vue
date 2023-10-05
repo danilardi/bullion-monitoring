@@ -3,9 +3,11 @@ import Sidebar from "@/components/Sidebar.vue";
 import Topbar from "@/components/Topbar.vue";
 import Footer from "@/components/Footer.vue";
 import Table from "@/components/Table.vue";
+import Filter from "@/components/Filter.vue";
 import { ref } from "vue";
 
 const table = ref(null);
+const selected = ref("1");
 
 function downloadTable() {
   table.value.ExportToExcel("xlsx");
@@ -40,7 +42,23 @@ function downloadTable() {
           </div>
 
           <!-- filter -->
+          <div class="page-header">
+            <span class="page-title d-flex">
+              <i class="bi bi-funnel-fill me-2"></i>
+              <select
+                class="form-select me-2"
+                aria-label="Default select example"
+                v-model="selected"
+              >
+                <option value="1">Annual</option>
+                <option value="2">Monthly</option>
+                <option value="3">Weekly</option>
+                <option value="4">Daily</option>
+              </select>
 
+              <Filter :selected="selected" />
+            </span>
+          </div>
           <!-- content -->
           <Table :route="'users'" ref="table" />
         </div>
