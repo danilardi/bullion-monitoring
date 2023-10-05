@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "name": "new basic users",
+      "type": "New Basic Users",
       "data": [
         {
           "id": 1,
@@ -116,7 +116,7 @@
     },
     {
       "id": 2,
-      "name": "new full users",
+      "type": "New Full Users",
       "data": [
         {
           "id": 1,
