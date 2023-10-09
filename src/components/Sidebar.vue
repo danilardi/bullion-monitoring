@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <nav class="sidebar" id="sidebar">
+  <nav class="sidebar d-none d-md-block">
     <ul class="nav">
       <li class="nav-item">
         <router-link class="nav-link" to="/">
@@ -38,6 +38,11 @@
                     <span class="menu-title">User</span>
                   </router-link>
                 </li>
+                <li class="nav-tem">
+                  <router-link class="nav-link" to="/monitoringFisikEmas">
+                    <span class="menu-title">Fisik Emas</span>
+                  </router-link>
+                </li>
               </div>
             </div>
           </div>
@@ -55,7 +60,9 @@
   width: 260px;
   z-index: 11;
 }
-
+.nav {
+  display: flex;
+}
 .sidebar .nav {
   flex-direction: column;
   padding: 0 2.25rem;
@@ -98,7 +105,7 @@
   --bs-accordion-btn-focus-box-shadow: ;
 }
 
-.accordion-item:has(.router-link-exact-active) {
+.accordion-item:has(.router-link-exact-active) .accordion-header .menu-title {
   color: black !important;
   font-weight: bold;
 }

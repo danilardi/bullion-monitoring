@@ -76,3 +76,9 @@
   font-weight: bold;
   color: black;
 }
+
+@media (max-width: 768px) {
+  .main-panel {
+    width: calc(100%);
+  }
+}
