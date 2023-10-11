@@ -8,8 +8,12 @@ import CardMobile from "@/components/CardsMobile.vue";
 
 const dataUser = CardData.users;
 
+const platformData = dataUser[0].data;
+const monthData = dataUser[0].data[0].value;
+
 console.log("dataUser", dataUser);
-console.log("contentData", dataUser[0].data);
+console.log("monthData", monthData);
+console.log("platformDatad", platformData);
 </script>
 
 <template>
@@ -31,29 +35,10 @@ console.log("contentData", dataUser[0].data);
           </div>
 
           <!-- content -->
-          <div class="mb-4">
-            <h4>MetalGo</h4>
+          <div class="mb-4" v-for="(platf, platfIndex) in platformData">
+            <h4>{{ platf.platform }}</h4>
             <div class="d-flex overflow-x-auto" style="scrollbar-width: thin">
-              <CardMobile v-for="item in dataUser[0].data[0].value" :month="item.time" :total="item.total" :data="dataUser" />
-            </div>
-          </div>
-          <div class="mb-4">
-            <h4>PosPayGold</h4>
-            <div class="d-flex overflow-x-auto">
-              <CardMobile v-for="item in dataUser[0].data[1].value" :month="item.time" :total="item.total" :data="dataUser" />
-            </div>
-          </div>
-          <div class="mb-4">
-            <h4>JFXGoldX</h4>
-            <div class="d-flex overflow-x-auto">
-              <CardMobile />
-              <CardMobile />
-              <CardMobile />
-              <CardMobile />
-              <CardMobile />
-              <CardMobile />
-              <CardMobile />
-              <CardMobile />
+              <CardMobile v-for="(month, monIndex) in monthData" :month="month.time" :monthIndex="monIndex" :platformIndex="platfIndex" :data="dataUser" />
             </div>
           </div>
         </div>
