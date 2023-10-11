@@ -55,10 +55,7 @@ onMounted(async () => {
           <!-- breadcrumb -->
           <div class="page-header">
             <nav class="page-title d-flex" aria-label="breadcrumb">
-              <span
-                class="d-flex page-title-icon bg-gradient-primary text-white me-2"
-                ><i class="bi bi-bar-chart-line-fill"></i
-              ></span>
+              <span class="d-flex page-title-icon bg-gradient-primary text-white me-2"><i class="bi bi-bar-chart-line-fill"></i></span>
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">Monitoring</li>
                 <li class="breadcrumb-item active" aria-current="page">User</li>
@@ -68,9 +65,7 @@ onMounted(async () => {
 
           <!-- content -->
           <div class="table-responsive">
-            <table
-              class="table table-striped table-hover table-bordered align-middle text-nowrap"
-            >
+            <table class="table table-striped table-hover table-bordered align-middle text-nowrap">
               <thead>
                 <tr>
                   <th scope="col" rowspan="2"></th>
@@ -93,12 +88,7 @@ onMounted(async () => {
                   <th scope="row">{{ item }}</th>
                   <template v-for="j in time.length">
                     <td class="text-center">
-                      {{
-                        countAll(
-                          value[j + time.length * 2 * i - 1],
-                          value[j + time.length * 2 * i - 1 + time.length]
-                        )
-                      }}
+                      {{ countAll(value[j + time.length * 2 * i - 1], value[j + time.length * 2 * i - 1 + time.length]) }}
                     </td>
                     <td class="text-center">
                       {{ value[j + time.length * 2 * i - 1] }}
