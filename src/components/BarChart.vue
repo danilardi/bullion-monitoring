@@ -2,20 +2,24 @@
 import { computed } from "vue";
 import { Bar } from "vue-chartjs";
 
-import dbData from "../../db.json";
-
 import { Chart, Legend, Title, Tooltip, BarController, CategoryScale, LinearScale, BarElement } from "chart.js";
 
 Chart.register(BarController, Legend, Title, Tooltip, CategoryScale, LinearScale, BarElement);
 
-const data = computed(() => {
-  const usersData = dbData.users;
-  const labels = usersData[0].data[0].value.map((item) => item.time);
+const props = defineProps({
+  menuDb: Object,
+  chartColor: Array,
+});
 
-  const datasets = usersData.map((user) => ({
-    label: user.name,
-    data: user.data[0].value.map((item) => parseInt(item.total)), // Extract and parse total values
-    backgroundColor: "#2aa198",
+const data = computed(() => {
+  const menuData = props.menuDb;
+  const labels = menuData.data[0].value.map((item) => item.time);
+
+  const datasets = menuData.data.map((user) => ({
+    label: user.platform,
+    data: user.value.map((item) => parseInt(item.total)), // Extract and parse total values
+    borderColor: props.chartColor[user.id - 1],
+    backgroundColor: props.chartColor[user.id - 1],
   }));
 
   return {
@@ -23,6 +27,10 @@ const data = computed(() => {
     datasets,
   };
 });
+
+const optionschart = computed(() => ({
+  responsive: true,
+}));
 </script>
 
 <template>
