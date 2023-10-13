@@ -3,6 +3,7 @@ import Sidebar from "@/components/Sidebar.vue";
 import Topbar from "@/components/Topbar.vue";
 import Footer from "@/components/Footer.vue";
 import Table from "@/components/Table.vue";
+import Cards from "@/components/Cards.vue";
 import Filter from "@/components/Filter.vue";
 import { ref } from "vue";
 
@@ -48,6 +49,7 @@ function downloadTable() {
           </div>
           <!-- content -->
           <Table :route="'users'" ref="table" />
+          <Cards :route="'users'" />
         </div>
         <Footer />
       </div>
