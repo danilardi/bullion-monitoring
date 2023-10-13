@@ -26,6 +26,7 @@ function setData(response) {
   data.value.type = [...new Set(temp.value.map((item) => item.type))];
   data.value.time = [...new Set(temp.value.map((item) => item.time))];
   data.value.platform = [...new Set(temp.value.map((item) => item.platform))];
+  console.log(data.value);
 }
 
 function countAll(a, b) {

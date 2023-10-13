@@ -31,7 +31,9 @@
       aria-labelledby="navbarOffcanvasLgLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+          Bullion Monitoring
+        </h5>
         <button
           type="button"
           class="btn-close"
@@ -96,6 +98,7 @@
 .navbar {
   font-weight: 300;
   background: #fff;
+  width: 100vw;
 }
 
 .navbar .navbar-brand-wrapper {

@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <nav class="sidebar d-none d-md-block">
+  <nav class="sidebar">
     <ul class="nav">
       <li class="nav-item">
         <router-link class="nav-link" to="/">
@@ -108,5 +108,11 @@
 .accordion-item:has(.router-link-exact-active) .accordion-header .menu-title {
   color: black !important;
   font-weight: bold;
+}
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    right: -260px;
+  }
 }
 </style>
