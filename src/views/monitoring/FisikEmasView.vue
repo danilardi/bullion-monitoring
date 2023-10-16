@@ -49,7 +49,8 @@ function downloadTable() {
             </span>
           </div>
           <!-- content -->
-          <Table :route="'users'" ref="table" />
+          <Table :route="'users'" ref="table" class="d-none d-md-block" />
+          <Cards :route="'users'" />
         </div>
         <Footer />
       </div>

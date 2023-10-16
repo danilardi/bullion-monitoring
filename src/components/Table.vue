@@ -51,7 +51,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="table-responsive">
+  <div class="table-responsive d-none d-md-block">
     <table
       id="tbl_exporttable_to_xls"
       class="table table-striped table-hover table-bordered align-middle text-nowrap"

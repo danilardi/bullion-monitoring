@@ -14,7 +14,13 @@ const props = defineProps({
     <div class="card-body">
       <h5 class="card-title text-center">{{ month }}</h5>
       <div class="">
-        <CardContent v-for="(type, typeIndex) in props.data" :content="type.name" :total="props.data[typeIndex].data[platformIndex].value[monthIndex].total" />
+        <CardContent
+          v-for="(type, typeIndex) in props.data"
+          :content="type.type"
+          :total="
+            props.data[typeIndex].data[platformIndex].value[monthIndex].total
+          "
+        />
       </div>
     </div>
   </div>

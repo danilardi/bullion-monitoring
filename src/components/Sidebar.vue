@@ -10,22 +10,32 @@
         </router-link>
       </li>
       <li class="nav-item">
-        <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+        <div
+          class="accordion accordion-flush"
+          id="accordionPanelsStayOpenExample"
+        >
           <div class="accordion-item">
             <div class="accordion-header">
-              <button class="nav-link accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <button
+                class="nav-link accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+              >
                 <i class="bi bi-bar-chart-line menu-icon"></i>
                 <span class="menu-title">Monitoring</span>
               </button>
             </div>
-            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+            <div
+              id="panelsStayOpen-collapseOne"
+              class="accordion-collapse collapse show"
+            >
               <div class="accordion-body">
                 <li class="nav-tem">
                   <router-link class="nav-link" to="/monitoringUser">
                     <span class="menu-title">User</span>
-                  </router-link>
-                  <router-link class="nav-link" to="/monitoringMobile">
-                    <span class="menu-title">User Mobile Tes</span>
                   </router-link>
                 </li>
                 <li class="nav-tem">

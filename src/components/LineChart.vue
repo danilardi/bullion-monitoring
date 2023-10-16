@@ -2,9 +2,28 @@
 import { computed } from "vue";
 import { Line } from "vue-chartjs";
 
-import { Chart, Legend, Title, Tooltip, LineController, LineElement, PointElement, CategoryScale, LinearScale } from "chart.js";
+import {
+  Chart,
+  Legend,
+  Title,
+  Tooltip,
+  LineController,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
 
-Chart.register(Legend, Title, Tooltip, LineController, LineElement, PointElement, CategoryScale, LinearScale);
+Chart.register(
+  Legend,
+  Title,
+  Tooltip,
+  LineController,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale
+);
 
 const props = defineProps({
   menuDb: Object,
