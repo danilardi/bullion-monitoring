@@ -41,6 +41,8 @@ const data = computed(() => {
     backgroundColor: props.chartColor[user.id - 1],
   }));
 
+  console.log("data", datasets);
+
   return {
     labels,
     datasets,

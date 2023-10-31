@@ -29,10 +29,6 @@ function setData(response) {
   console.log(data.value);
 }
 
-function countAll(a, b) {
-  return Number(a) + Number(b);
-}
-
 function ExportToExcel(type, fn, dl) {
   var elt = document.getElementById("tbl_exporttable_to_xls");
   var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
@@ -54,13 +50,12 @@ defineExpose({
   <div class="table-responsive d-none d-md-block">
     <table
       id="tbl_exporttable_to_xls"
-      class="table table-striped table-hover table-bordered align-middle text-nowrap"
+      class="table table-hover table-bordered align-middle text-nowrap"
     >
       <thead>
         <tr>
           <th scope="col" rowspan="2"></th>
           <template v-for="index in data.time">
-            <th class="text-center" scope="col">JFXGoldX</th>
             <th class="text-center" scope="col" v-for="item in data.platform">
               {{ item }}
             </th>
@@ -68,9 +63,9 @@ defineExpose({
         </tr>
         <tr>
           <template v-for="item in data.time">
-            <th class="text-center" scope="col" colspan="3">
+            <td class="text-center" scope="col" colspan="3">
               {{ item }}
-            </th>
+            </td>
           </template>
         </tr>
       </thead>
@@ -79,22 +74,14 @@ defineExpose({
         <tr v-for="(item, i) in data.type">
           <th scope="row">{{ item }}</th>
           <template v-for="j in data.time.length">
-            <td class="text-center">
+            <td class="text-center" v-for="(platform, k) in data.platform">
               {{
-                countAll(
-                  data.data[j + data.time.length * 2 * i - 1].total,
-                  data.data[j + data.time.length * 2 * i - 1 + data.time.length]
-                    .total
-                )
-              }}
-            </td>
-            <td class="text-center">
-              {{ data.data[j + data.time.length * 2 * i - 1].total }}
-            </td>
-            <td class="text-center">
-              {{
-                data.data[j + data.time.length * 2 * i - 1 + data.time.length]
-                  .total
+                data.data[
+                  j +
+                    data.time.length * data.platform.length * i -
+                    1 +
+                    k * data.time.length
+                ].total
               }}
             </td>
           </template>
@@ -104,4 +91,9 @@ defineExpose({
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+th:first-child {
+  position: sticky;
+  left: -1px;
+}
+</style>

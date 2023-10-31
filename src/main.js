@@ -13,6 +13,7 @@ import router from "./router";
 import ToastPlugin from "vue-toast-notification";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import VueDragscroll from "vue-dragscroll";
+import Antd from 'ant-design-vue';
 
 const app = createApp(App);
 
@@ -20,5 +21,6 @@ app.use(createPinia());
 app.use(router);
 app.use(ToastPlugin);
 app.use(VueDragscroll);
+app.use(Antd);
 app.component("VueDatePicker", VueDatePicker);
 app.mount("#app");

@@ -111,6 +111,60 @@
               "total" : "1200"
             }
           ]
+        },
+        {
+          "id": 3,
+          "platform": "JFXGoldX",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "300"
+            },
+            {
+              "time" : "Februari",
+              "total" : "400"
+            },
+            {
+              "time" : "Maret",
+              "total" : "600"
+            },
+            {
+              "time" : "April",
+              "total" : "800"
+            },
+            {
+              "time" : "Mei",
+              "total" : "1000"
+            },
+            {
+              "time" : "Juni",
+              "total" : "1200"
+            },
+            {
+              "time" : "Juli",
+              "total" : "1400"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "1600"
+            },
+            {
+              "time" : "September",
+              "total" : "1800"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "2000"
+            },
+            {
+              "time" : "November",
+              "total" : "2200"
+            },
+            {
+              "time" : "Desember",
+              "total" : "2400"
+            }
+          ]
         }
       ]
     },
@@ -223,6 +277,228 @@
             {
               "time" : "Desember",
               "total" : "1200"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "platform": "JFXGoldX",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "700"
+            },
+            {
+              "time" : "Februari",
+              "total" : "400"
+            },
+            {
+              "time" : "Maret",
+              "total" : "600"
+            },
+            {
+              "time" : "April",
+              "total" : "800"
+            },
+            {
+              "time" : "Mei",
+              "total" : "1000"
+            },
+            {
+              "time" : "Juni",
+              "total" : "1200"
+            },
+            {
+              "time" : "Juli",
+              "total" : "1400"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "1600"
+            },
+            {
+              "time" : "September",
+              "total" : "1800"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "2000"
+            },
+            {
+              "time" : "November",
+              "total" : "2200"
+            },
+            {
+              "time" : "Desember",
+              "total" : "2400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "Nwew Full Users",
+      "data": [
+        {
+          "id": 1,
+          "platform": "MetalGO",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "300"
+            },
+            {
+              "time" : "Februari",
+              "total" : "200"
+            },
+            {
+              "time" : "Maret",
+              "total" : "300"
+            },
+            {
+              "time" : "April",
+              "total" : "400"
+            },
+            {
+              "time" : "Mei",
+              "total" : "500"
+            },
+            {
+              "time" : "Juni",
+              "total" : "600"
+            },
+            {
+              "time" : "Juli",
+              "total" : "700"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "800"
+            },
+            {
+              "time" : "September",
+              "total" : "900"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "1000"
+            },
+            {
+              "time" : "November",
+              "total" : "1100"
+            },
+            {
+              "time" : "Desember",
+              "total" : "1200"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "platform": "PosPayGold",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "400"
+            },
+            {
+              "time" : "Februari",
+              "total" : "200"
+            },
+            {
+              "time" : "Maret",
+              "total" : "300"
+            },
+            {
+              "time" : "April",
+              "total" : "400"
+            },
+            {
+              "time" : "Mei",
+              "total" : "500"
+            },
+            {
+              "time" : "Juni",
+              "total" : "600"
+            },
+            {
+              "time" : "Juli",
+              "total" : "700"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "800"
+            },
+            {
+              "time" : "September",
+              "total" : "900"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "1000"
+            },
+            {
+              "time" : "November",
+              "total" : "1100"
+            },
+            {
+              "time" : "Desember",
+              "total" : "1200"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "platform": "JFXGoldX",
+          "value": [
+            {
+              "time" : "Januari",
+              "total" : "700"
+            },
+            {
+              "time" : "Februari",
+              "total" : "400"
+            },
+            {
+              "time" : "Maret",
+              "total" : "600"
+            },
+            {
+              "time" : "April",
+              "total" : "800"
+            },
+            {
+              "time" : "Mei",
+              "total" : "1000"
+            },
+            {
+              "time" : "Juni",
+              "total" : "1200"
+            },
+            {
+              "time" : "Juli",
+              "total" : "1400"
+            },
+            {
+              "time" : "Agustus",
+              "total" : "1600"
+            },
+            {
+              "time" : "September",
+              "total" : "1800"
+            },
+            {
+              "time" : "Oktober",
+              "total" : "2000"
+            },
+            {
+              "time" : "November",
+              "total" : "2200"
+            },
+            {
+              "time" : "Desember",
+              "total" : "2400"
             }
           ]
         }

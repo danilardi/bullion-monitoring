@@ -5,6 +5,8 @@ import Footer from "@/components/Footer.vue";
 import Table from "@/components/Table.vue";
 import Cards from "@/components/Cards.vue";
 import Filter from "@/components/Filter.vue";
+import LineChart from "@/components/LineChart2.vue";
+
 import { ref } from "vue";
 
 const table = ref(null);
@@ -15,7 +17,7 @@ function downloadTable() {
 </script>
 
 <template>
-  <div class="fisik-emas">
+  <div class="user">
     <Topbar />
     <div class="container-fluid page-body-wrapper">
       <Sidebar />
@@ -50,6 +52,18 @@ function downloadTable() {
           <!-- content -->
           <Table :route="'users'" ref="table" />
           <Cards :route="'users'" />
+
+          <!-- Chart -->
+          <div class="d-flex justify-content-center mt-5">
+            <div class="card shadow card-product" style="width: 500px">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">
+                  <i class="bi bi-person me-2"></i>User Details
+                </h5>
+                <LineChart :route="'users'" />
+              </div>
+            </div>
+          </div>
         </div>
         <Footer />
       </div>
