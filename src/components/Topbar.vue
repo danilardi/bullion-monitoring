@@ -1,4 +1,23 @@
-<script setup></script>
+<script setup>
+import { useAuthStore } from "@/stores/auth";
+import { useRouter } from "vue-router";
+import { useToast } from "vue-toast-notification";
+
+const $router = useRouter();
+const $toast = useToast();
+const authStore = useAuthStore();
+
+function logout() {
+  authStore.logout();
+  $router.push({ path: "/auth/login" });
+  $toast.success("Sukses Logout", {
+    type: "success",
+    position: "top-right",
+    duration: 3000,
+    dismissible: true,
+  });
+}
+</script>
 
 <template>
   <nav class="navbar navbar-expand-md bg-body-tertiary fixed-top p-0 d-flex">
@@ -20,7 +39,13 @@
     <div class="navbar-menu-wrapper flex-md-fill">
       <ul class="navbar-nav flex-row ms-auto align-items-center">
         <li class="nav-item">
-          <i class="bi bi-person-circle menu-icon"></i>
+          <button
+            class="btn btn-danger btn-lg btn-block"
+            type="submit"
+            @click.prevent="logout"
+          >
+            Log out
+          </button>
         </li>
       </ul>
     </div>
@@ -74,12 +99,12 @@
                 >
                   <div class="accordion-body">
                     <li class="nav-tem">
-                      <router-link class="nav-link" to="/monitoringUser">
+                      <router-link class="nav-link" to="/monitoring/user">
                         <span class="menu-title">User</span>
                       </router-link>
                     </li>
                     <li class="nav-tem">
-                      <router-link class="nav-link" to="/monitoringFisikEmas">
+                      <router-link class="nav-link" to="/monitoring/fisikEmas">
                         <span class="menu-title">Fisik Emas</span>
                       </router-link>
                     </li>

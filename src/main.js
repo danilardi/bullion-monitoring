@@ -5,7 +5,7 @@ import "vue-toast-notification/dist/theme-bootstrap.css";
 import "@vuepic/vue-datepicker/dist/main.css";
 import "./assets/main.css";
 
-import { createApp } from "vue";
+import { createApp, watch } from "vue";
 import { createPinia } from "pinia";
 
 import App from "./App.vue";
@@ -16,11 +16,22 @@ import VueDragscroll from "vue-dragscroll";
 import Antd from 'ant-design-vue';
 
 const app = createApp(App);
+const pinia = createPinia();
 
-app.use(createPinia());
+watch(
+    pinia.state,
+    (state) => {
+        localStorage.setItem("auth", JSON.stringify(state.auth));
+    },
+    { deep: true }
+);
+
+
+app.use(pinia);
 app.use(router);
 app.use(ToastPlugin);
 app.use(VueDragscroll);
 app.use(Antd);
 app.component("VueDatePicker", VueDatePicker);
 app.mount("#app");
+
