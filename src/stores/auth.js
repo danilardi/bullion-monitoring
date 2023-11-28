@@ -3,10 +3,19 @@ import { defineStore } from 'pinia'
 import request from '@/util/request'
 
 export const useAuthStore = defineStore('auth', () => {
-    const access_token = ref(JSON.parse(localStorage.getItem('auth')).access_token ?? '[]')
-    const username = ref(JSON.parse(localStorage.getItem('auth')).username ?? '[]')
-    const fullname = ref(JSON.parse(localStorage.getItem('auth')).fullname ?? '[]')
-    const role = ref(JSON.parse(localStorage.getItem('auth')).role ?? '[]')
+
+    if (localStorage.getItem('auth') == null) {
+        localStorage.setItem('auth', JSON.stringify({
+            access_token: '',
+            username: '',
+            fullname: '',
+            role: ''
+        }))
+    }
+    const access_token = ref(JSON.parse(localStorage.getItem('auth')).access_token)
+    const username = ref(JSON.parse(localStorage.getItem('auth')).username)
+    const fullname = ref(JSON.parse(localStorage.getItem('auth')).fullname)
+    const role = ref(JSON.parse(localStorage.getItem('auth')).role)
 
     const getAccessToken = computed(() => access_token.value)
     const getUsername = computed(() => username.value)

@@ -4,7 +4,7 @@ import Topbar from "../components/Topbar.vue";
 import Footer from "../components/Footer.vue";
 import Filter from "../components/Filter.vue";
 
-import LineChart from "../components/LineChart2.vue";
+import LineChart from "../components/LineChart.vue";
 </script>
 
 <template>

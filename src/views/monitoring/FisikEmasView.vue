@@ -5,9 +5,12 @@ import Footer from "@/components/Footer.vue";
 import Table from "@/components/Table.vue";
 import Cards from "@/components/Cards.vue";
 import Filter from "@/components/Filter.vue";
+import LineChart from "@/components/LineChart.vue";
+
 import { ref } from "vue";
 
 const table = ref(null);
+const route = ref("gold");
 
 function downloadTable() {
   table.value.ExportToExcel("xlsx");
@@ -30,9 +33,7 @@ function downloadTable() {
               ></span>
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">Monitoring</li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Fisik Emas
-                </li>
+                <li class="breadcrumb-item active" aria-current="page">User</li>
               </ol>
             </nav>
             <!-- Button Download -->
@@ -50,8 +51,20 @@ function downloadTable() {
             </span>
           </div>
           <!-- content -->
-          <Table :route="'users'" ref="table" />
-          <Cards :route="'users'" />
+          <Table :route="route" ref="table" />
+          <Cards :route="route" />
+
+          <!-- Chart -->
+          <div class="d-flex justify-content-center mt-5">
+            <div class="card shadow card-product" style="width: 500px">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">
+                  <i class="bi bi-person me-2"></i>Fisik Emas Details
+                </h5>
+                <LineChart :route="route" />
+              </div>
+            </div>
+          </div>
         </div>
         <Footer />
       </div>

@@ -15,21 +15,81 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/monitoring/user",
-      name: "monitoringUser",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/monitoring/UserView.vue"),
+      path: '/monitoring',
+      redirect: '/monitoring/user',
+      children: [
+        {
+          path: '/monitoring/user',
+          name: 'UserMonitoring',
+          component: () => import('@/views/monitoring/UserView.vue'),
+        },
+        {
+          path: '/monitoring/fisikEmas',
+          name: 'FisikEmasMonitoring',
+          component: () => import('@/views/monitoring/FisikEmasView.vue'),
+        },
+        {
+          path: '/monitoring/metalpay',
+          name: 'MetalpayMonitoring',
+          component: () => import('@/views/monitoring/MetalpayView.vue'),
+        },
+        {
+          path: '/monitoring/gtm',
+          name: 'GTMMonitoring',
+          component: () => import('@/views/monitoring/GTMView.vue'),
+        },
+        {
+          path: '/monitoring/ticketing',
+          name: 'TicketingMonitoring',
+          component: () => import('@/views/monitoring/TicketingView.vue'),
+        },
+        {
+          path: '/monitoring/ziswaf',
+          name: 'ZiswafMonitoring',
+          component: () => import('@/views/monitoring/ZiswafView.vue'),
+        },
+      ],
     },
-    {
-      path: '/monitoring/fisikEmas',
-      name: 'monitoringFisikEmas',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/monitoring/FisikEmasView.vue')
-    }
+    // {
+    //   path: "/monitoring/user",
+    //   name: "monitoringUser",
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import("../views/monitoring/UserView.vue"),
+    // },
+    // {
+    //   path: '/monitoring/fisikEmas',
+    //   name: 'monitoringFisikEmas',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/monitoring/FisikEmasView.vue')
+    // },
+    // {
+    //   path: '/monitoring/metalpay',
+    //   name: 'monitoringMetalpay',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/monitoring/MetalpayView.vue')
+    // },
+    // {
+    //   path: '/monitoring/gtm',
+    //   name: 'monitoringGTM',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/monitoring/GTMView.vue')
+    // },
+    // {
+    //   path: '/monitoring/fisikEmas',
+    //   name: 'monitoringFisikEmas',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/monitoring/FisikEmasView.vue')
+    // }
   ]
 })
 

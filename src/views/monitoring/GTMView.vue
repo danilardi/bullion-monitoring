@@ -10,7 +10,7 @@ import LineChart from "@/components/LineChart.vue";
 import { ref } from "vue";
 
 const table = ref(null);
-const route = ref("user");
+const route = ref("gtm");
 
 function downloadTable() {
   table.value.ExportToExcel("xlsx");
@@ -47,7 +47,7 @@ function downloadTable() {
           <!-- filter -->
           <div class="page-header">
             <span class="page-title d-flex">
-              <Filter />
+              <Filter :selected="selected" />
             </span>
           </div>
           <!-- content -->
@@ -59,7 +59,7 @@ function downloadTable() {
             <div class="card shadow card-product" style="width: 500px">
               <div class="card-body">
                 <h5 class="card-title fw-bold">
-                  <i class="bi bi-person me-2"></i>User Details
+                  <i class="bi bi-person me-2"></i>GTM Details
                 </h5>
                 <LineChart :route="route" />
               </div>

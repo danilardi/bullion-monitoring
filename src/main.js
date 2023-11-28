@@ -26,7 +26,6 @@ watch(
     { deep: true }
 );
 
-
 app.use(pinia);
 app.use(router);
 app.use(ToastPlugin);

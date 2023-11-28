@@ -1,33 +1,17 @@
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import * as XLSX from "xlsx";
+import { useMonitoringStore } from "@/stores/monitoring";
 
+const monitoringStore = useMonitoringStore();
 const props = defineProps(["route"]);
-const data = ref([]);
+
+const onMountedLoaded = ref(false);
 const exportTable = ref(null);
 
-function setData(response) {
-  let users = response.data;
-  let temp = ref([]);
-  users.forEach((users) => {
-    users.data.forEach((usersData) => {
-      usersData.value.forEach((value) => {
-        temp.value.push({
-          platform: usersData.platform,
-          type: users.type,
-          time: value.time,
-          total: value.total,
-        });
-      });
-    });
-  });
-  data.value.data = temp.value;
-  data.value.type = [...new Set(temp.value.map((item) => item.type))];
-  data.value.time = [...new Set(temp.value.map((item) => item.time))];
-  data.value.platform = [...new Set(temp.value.map((item) => item.platform))];
-  console.log(data.value);
-}
+const data = computed(() => {
+  return monitoringStore.getData;
+});
 
 function ExportToExcel(type, fn, dl) {
   var elt = document.getElementById("tbl_exporttable_to_xls");
@@ -36,9 +20,13 @@ function ExportToExcel(type, fn, dl) {
     ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" })
     : XLSX.writeFile(wb, fn || "MySheetName." + (type || "xlsx"));
 }
-onMounted(async () => {
-  const response = await axios.get("http://localhost:3000/" + props.route);
-  setData(response);
+
+onMounted(() => {
+  monitoringStore.setRoute(props.route);
+  monitoringStore.getDataFromAPI().then(() => {
+    onMountedLoaded.value = true;
+    // console.log(data.value.data);
+  });
 });
 
 defineExpose({
@@ -49,6 +37,7 @@ defineExpose({
 <template>
   <div class="table-responsive d-none d-md-block">
     <table
+      v-if="onMountedLoaded"
       id="tbl_exporttable_to_xls"
       class="table table-hover table-bordered align-middle text-nowrap"
     >
@@ -71,18 +60,11 @@ defineExpose({
       </thead>
 
       <tbody>
-        <tr v-for="(item, i) in data.type">
-          <th scope="row">{{ item }}</th>
-          <template v-for="j in data.time.length">
-            <td class="text-center" v-for="(platform, k) in data.platform">
-              {{
-                data.data[
-                  j +
-                    data.time.length * data.platform.length * i -
-                    1 +
-                    k * data.time.length
-                ].total
-              }}
+        <tr v-for="tipe in data.type">
+          <th scope="row">{{ tipe }}</th>
+          <template v-for="time in data.time">
+            <td class="text-center" v-for="platform in data.platform">
+              {{ data.data[platform][time][tipe] }}
             </td>
           </template>
         </tr>

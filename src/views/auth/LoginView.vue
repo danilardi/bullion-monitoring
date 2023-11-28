@@ -29,10 +29,6 @@ function handleLogin() {
       });
   }
 }
-
-function logout() {
-  authStore.logout();
-}
 </script>
 
 <template>
