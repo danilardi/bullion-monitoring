@@ -3,19 +3,19 @@ import { ref, computed, onMounted } from "vue";
 import { useMonitoringStore } from "@/stores/monitoring";
 
 const monitoringStore = useMonitoringStore();
+
 const props = defineProps(["route"]);
 
-const onMountedLoaded = ref(false);
-
 const data = computed(() => {
-  return monitoringStore.getData;
+  return monitoringStore.getData(props.route);
 });
 
-onMounted(() => {
-  monitoringStore.getDataFromAPI(props.route, 2023).then(() => {
-    onMountedLoaded.value = true;
-    // console.log(data.value.data);
-  });
+const onMountedLoaded = computed(() => {
+  if (data.value == null || data.value.data == null) {
+    return false;
+  } else {
+    return true;
+  }
 });
 </script>
 

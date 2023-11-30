@@ -2,26 +2,25 @@
 import { ref, onMounted, computed } from "vue";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import { useMonitoringStore } from "@/stores/monitoring";
-import { getWeeksInMonthOnYear } from "@/util/date";
 
 const monitoringStore = useMonitoringStore();
 
 const selected = ref();
-const weeks = computed(() => {
-  return getWeeksInMonthOnYear(
-    monitoringStore.getMonth.year,
-    monitoringStore.getMonth.month
-  );
-});
+const datepicker = ref(null);
 
-function cek() {
-  monitoringStore.getDataFromAPI();
-  console.log("data", weeks.value);
-  console.log("selected", monitoringStore.getSelected);
-  console.log("year", monitoringStore.getYear);
-  console.log("month", monitoringStore.getMonth);
-  console.log("week", monitoringStore.getWeek);
-  console.log("date", monitoringStore.getDate);
+const handleMonthYear = ({ instance, month, year }) => {
+  // console.log("month", month);
+  // console.log("year", year);
+  monitoringStore.setWeek(month, year);
+};
+
+const handleInternal = (date) => {
+  // console.log("date", date);
+  monitoringStore.setDate(date);
+};
+
+function filter() {
+  monitoringStore.fetchData();
 }
 
 onMounted(() => {
@@ -59,27 +58,23 @@ onMounted(() => {
     placeholder="Select month"
     month-picker
     auto-apply
+    @update-month-year="handleMonthYear"
     :max-date="new Date()"
   />
   <!-- weekly -->
-  <!-- <VueDatePicker
+  <VueDatePicker
     v-if="monitoringStore.getSelected == 3"
     v-model="monitoringStore.week"
+    week-picker
     auto-apply
+    ref="datepicker"
     placeholder="Select week"
+    disable-month-year-select
     :max-date="new Date()"
     :enable-time-picker="false"
-  /> -->
-  <select
-    v-if="monitoringStore.getSelected == 3"
-    class="form-select ms-2"
-    aria-label="select week"
-    v-model="monitoringStore.week"
-  >
-    <template v-for="(item, index) in weeks">
-      <option :value="index + 1">Week {{ index + 1 }}</option>
-    </template>
-  </select>
+    @internal-model-change="handleInternal"
+  />
+
   <!-- daily -->
   <VueDatePicker
     v-if="monitoringStore.getSelected == 4"
@@ -87,12 +82,12 @@ onMounted(() => {
     range
     max-range="6"
     auto-apply
-    placeholder="Can't have more than 6 days in between"
+    placeholder="Max range 6 days"
     :max-date="new Date()"
     :enable-time-picker="false"
   />
 
   <span>
-    <button class="btn btn-success ms-2" @click.prevent="cek">Filter</button>
+    <button class="btn btn-success ms-2" @click.prevent="filter">Filter</button>
   </span>
 </template>

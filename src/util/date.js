@@ -46,4 +46,14 @@ export function getWeekInMonth(date) {
             return weeks.indexOf(week) + 1;
         }
     }
-}   
+}
+
+// create fun convert "Sun Nov 19 2023 15:08:00 GMT+0700 (Western Indonesia Time)" to "2023-11-19"
+export function convertDate(date) {
+    const dateObj = new Date(date);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const dt = dateObj.getDate();
+
+    return `${year}-${month}-${dt}`;
+}

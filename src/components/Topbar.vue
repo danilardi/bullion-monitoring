@@ -40,7 +40,7 @@ function logout() {
       <ul class="navbar-nav flex-row ms-auto align-items-center">
         <li class="nav-item">
           <button
-            class="btn btn-danger btn-lg btn-block"
+            class="btn btn-danger btn-lg btn-block me-2"
             type="submit"
             @click.prevent="logout"
           >

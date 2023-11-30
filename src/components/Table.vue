@@ -4,13 +4,19 @@ import * as XLSX from "xlsx";
 import { useMonitoringStore } from "@/stores/monitoring";
 
 const monitoringStore = useMonitoringStore();
+
 const props = defineProps(["route"]);
 
-const onMountedLoaded = ref(false);
-const exportTable = ref(null);
+const onMountedLoaded = computed(() => {
+  if (data.value == null || data.value.data == null) {
+    return false;
+  } else {
+    return true;
+  }
+});
 
 const data = computed(() => {
-  return monitoringStore.getData;
+  return monitoringStore.getData(props.route);
 });
 
 function ExportToExcel(type, fn, dl) {
@@ -21,20 +27,13 @@ function ExportToExcel(type, fn, dl) {
     : XLSX.writeFile(wb, fn || "MySheetName." + (type || "xlsx"));
 }
 
-onMounted(() => {
-  monitoringStore.setRoute(props.route);
-  monitoringStore.getDataFromAPI().then(() => {
-    onMountedLoaded.value = true;
-    // console.log(data.value.data);
-  });
-});
-
 defineExpose({
   ExportToExcel,
 });
 </script>
 
 <template>
+  <div v-if="!onMountedLoaded">Data Null</div>
   <div class="table-responsive d-none d-md-block">
     <table
       v-if="onMountedLoaded"

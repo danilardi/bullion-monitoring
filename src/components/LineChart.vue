@@ -2,9 +2,6 @@
 import { ref, computed, onMounted } from "vue";
 import { Line } from "vue-chartjs";
 import { useMonitoringStore } from "@/stores/monitoring";
-
-const monitoringStore = useMonitoringStore();
-
 import {
   Chart,
   Legend,
@@ -28,16 +25,38 @@ Chart.register(
   LinearScale
 );
 
+const monitoringStore = useMonitoringStore();
+
 const props = defineProps(["route"]);
 
 const chartColor = ref(["#2aa198", "#a93278", "#3759b2"]);
 
 const selected = ref("1");
-const onMountedLoaded = ref(false);
-const onDatasetLoaded = ref(false);
+
+const cek = ref({ data: [], dataLoad: false });
 
 const data = computed(() => {
-  return monitoringStore.getData;
+  return monitoringStore.getData(props.route);
+});
+
+const onMountedLoaded = computed(() => {
+  if (data.value == null || data.value.data == null) {
+    return false;
+  } else {
+    if (cek.value.dataLoad == false) {
+      cek.value.dataLoad = true;
+      cek.value.data = data.value.platform;
+    }
+    return true;
+  }
+});
+
+const onDatasetLoaded = computed(() => {
+  if (data.value.total == null) {
+    return false;
+  } else {
+    return true;
+  }
 });
 
 const dataChart = computed(() => {
@@ -45,7 +64,14 @@ const dataChart = computed(() => {
   const datasets = [];
   data.value.total = {};
 
-  Object.keys(data.value.data).forEach((platform) => {
+  if (data.value.data == null) {
+    return {
+      labels,
+      datasets,
+    };
+  }
+
+  cek.value.data.forEach((platform) => {
     const temp = [];
     Object.keys(data.value.data[platform]).forEach((time) => {
       temp.push(
@@ -54,7 +80,6 @@ const dataChart = computed(() => {
     });
 
     const tempSum = temp.reduce((a, b) => a + b, 0);
-
     data.value.total[platform] = tempSum;
 
     datasets.push({
@@ -64,8 +89,6 @@ const dataChart = computed(() => {
       backgroundColor: chartColor.value[data.value.platform.indexOf(platform)],
     });
   });
-
-  onDatasetLoaded.value = true;
 
   return {
     labels,
@@ -82,48 +105,81 @@ const optionschart = computed(() => ({
   },
 }));
 
-onMounted(async () => {
-  monitoringStore.getDataFromAPI(props.route, 2023).then(() => {
-    onMountedLoaded.value = true;
-  });
+onMounted(() => {
+  monitoringStore.pushRoute(props.route);
+  monitoringStore.fetchData();
 });
 </script>
 
 <template>
-  <div class="d-flex m-2">
-    <select
-      class="form-select"
-      aria-label="Default select example"
-      v-model="selected"
-    >
-      <template v-for="(tipe, index) in data.type">
-        <option :value="index + 1">
-          {{ tipe }}
-        </option>
-      </template>
-    </select>
-  </div>
   <div
-    class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-between align-items-center"
+    v-if="onMountedLoaded"
+    class="card shadow card-product"
+    style="width: 500px"
   >
-    <div class="d-flex align-items-center" v-for="platform in data.platform">
+    <div class="card-body">
+      <h5 class="card-title fw-bold">
+        <i class="bi bi-person me-2"></i>{{ props.route }} Details
+      </h5>
+      <div v-if="onMountedLoaded" class="d-flex m-2">
+        <select class="form-select" aria-label="select type" v-model="selected">
+          <template v-for="(tipe, index) in data.type">
+            <option :value="index + 1">
+              {{ tipe }}
+            </option>
+          </template>
+        </select>
+      </div>
+
       <div
-        class="container-logo-platform d-flex align-items-center justify-content-center me-2"
+        class="btn-group d-flex m-2 justify-content-between"
+        role="group"
+        aria-label="Basic checkbox toggle button group"
       >
-        <img
-          class="logo-platform"
-          :src="`../../assets/images/${platform}.png`"
-        />
+        <template v-for="(platform, index) in data.platform">
+          <div class="form-check form-switch">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="`btncheck${index + 2}`"
+              :value="platform"
+              autocomplete="off"
+              checked
+              v-model="cek.data"
+            />
+            <label class="form-check-label" :for="`btncheck${index + 2}`">{{
+              platform
+            }}</label>
+          </div>
+        </template>
       </div>
-      <div class="flex-row">
-        <div class="fw-bold" v-if="onDatasetLoaded">
-          {{ data.total[platform] }}
+
+      <div
+        class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-between align-items-center"
+      >
+        <div
+          class="d-flex align-items-center"
+          v-for="platform in data.platform"
+        >
+          <div
+            class="container-logo-platform d-flex align-items-center justify-content-center me-2"
+          >
+            <img
+              class="logo-platform"
+              :src="`../../assets/images/${platform}.png`"
+            />
+          </div>
+          <div class="flex-row">
+            <div class="fw-bold" v-if="onDatasetLoaded">
+              {{ data.total[platform] }}
+            </div>
+            <div class="text-muted">Total</div>
+          </div>
         </div>
-        <div class="text-muted">Total</div>
       </div>
+      <Line v-if="onMountedLoaded" :data="dataChart" :options="optionschart" />
     </div>
   </div>
-  <Line v-if="onMountedLoaded" :data="dataChart" :options="optionschart" />
 </template>
 
 <style scoped>

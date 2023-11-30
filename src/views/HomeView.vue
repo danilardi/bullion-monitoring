@@ -26,21 +26,16 @@ import LineChart from "../components/LineChart.vue";
           <!-- filter -->
           <div class="page-header">
             <span class="page-title d-flex">
-              <Filter :selected="selected" />
+              <Filter />
             </span>
           </div>
           <!-- content -->
           <div
             class="d-flex justify-content-sm-center justify-content-md-start"
           >
-            <div class="card shadow card-product" style="width: 500px">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">
-                  <i class="bi bi-person me-2"></i>User Details
-                </h5>
-                <LineChart :route="'users'" />
-              </div>
-            </div>
+            <LineChart :route="'user'" />
+            <LineChart :route="'gold'" />
+            <LineChart :route="'gtm'" />
           </div>
         </div>
         <Footer />

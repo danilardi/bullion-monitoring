@@ -18,7 +18,7 @@ function downloadTable() {
 </script>
 
 <template>
-  <div class="fisik-emas">
+  <div class="monitoring">
     <Topbar />
     <div class="container-fluid page-body-wrapper">
       <Sidebar />
@@ -56,14 +56,7 @@ function downloadTable() {
 
           <!-- Chart -->
           <div class="d-flex justify-content-center mt-5">
-            <div class="card shadow card-product" style="width: 500px">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">
-                  <i class="bi bi-person me-2"></i>User Details
-                </h5>
-                <LineChart :route="route" />
-              </div>
-            </div>
+            <LineChart :route="route" />
           </div>
         </div>
         <Footer />
