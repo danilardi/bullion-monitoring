@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 import * as XLSX from "xlsx";
 import { useMonitoringStore } from "@/stores/monitoring";
+import { clearText, convertNumberToCurrency } from "../util/text";
 
 const monitoringStore = useMonitoringStore();
 
@@ -45,14 +46,14 @@ defineExpose({
           <th scope="col" rowspan="2"></th>
           <template v-for="index in data.time">
             <th class="text-center" scope="col" v-for="item in data.platform">
-              {{ item }}
+              {{ clearText(item) }}
             </th>
           </template>
         </tr>
         <tr>
           <template v-for="item in data.time">
             <td class="text-center" scope="col" colspan="3">
-              {{ item }}
+              {{ clearText(item) }}
             </td>
           </template>
         </tr>
@@ -60,10 +61,10 @@ defineExpose({
 
       <tbody>
         <tr v-for="tipe in data.type">
-          <th scope="row">{{ tipe }}</th>
+          <th scope="row">{{ clearText(tipe) }}</th>
           <template v-for="time in data.time">
             <td class="text-center" v-for="platform in data.platform">
-              {{ data.data[platform][time][tipe] }}
+              {{ convertNumberToCurrency(data.data[platform][time][tipe]) }}
             </td>
           </template>
         </tr>

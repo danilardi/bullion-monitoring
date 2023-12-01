@@ -56,7 +56,7 @@ function downloadTable() {
 
           <!-- Chart -->
           <div class="d-flex justify-content-center mt-5">
-            <LineChart :route="route" />
+            <LineChart :route="route" style="width: 80%" />
           </div>
         </div>
         <Footer />

@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 import { Line } from "vue-chartjs";
 import { useMonitoringStore } from "@/stores/monitoring";
+import { clearText } from "../util/text";
 import {
   Chart,
   Legend,
@@ -112,32 +113,28 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    v-if="onMountedLoaded"
-    class="card shadow card-product"
-    style="width: 500px"
-  >
+  <div v-if="onMountedLoaded" class="card shadow card-product">
     <div class="card-body">
       <h5 class="card-title fw-bold">
-        <i class="bi bi-person me-2"></i>{{ props.route }} Details
+        <i class="bi bi-person me-2"></i>{{ clearText(props.route) }} Details
       </h5>
       <div v-if="onMountedLoaded" class="d-flex m-2">
         <select class="form-select" aria-label="select type" v-model="selected">
           <template v-for="(tipe, index) in data.type">
             <option :value="index + 1">
-              {{ tipe }}
+              {{ clearText(tipe) }}
             </option>
           </template>
         </select>
       </div>
 
       <div
-        class="btn-group d-flex m-2 justify-content-between"
+        class="btn-group d-flex justify-content-center"
         role="group"
         aria-label="Basic checkbox toggle button group"
       >
         <template v-for="(platform, index) in data.platform">
-          <div class="form-check form-switch">
+          <div class="form-check form-switch ms-4 me-4">
             <input
               type="checkbox"
               class="form-check-input"
@@ -148,17 +145,17 @@ onMounted(() => {
               v-model="cek.data"
             />
             <label class="form-check-label" :for="`btncheck${index + 2}`">{{
-              platform
+              clearText(platform)
             }}</label>
           </div>
         </template>
       </div>
 
       <div
-        class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-between align-items-center"
+        class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-center align-items-center"
       >
         <div
-          class="d-flex align-items-center"
+          class="d-flex align-items-center ms-4 me-4"
           v-for="platform in data.platform"
         >
           <div
@@ -177,7 +174,13 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <Line v-if="onMountedLoaded" :data="dataChart" :options="optionschart" />
+      <div style="height: 90%">
+        <Line
+          v-if="onMountedLoaded"
+          :data="dataChart"
+          :options="optionschart"
+        />
+      </div>
     </div>
   </div>
 </template>

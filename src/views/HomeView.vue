@@ -1,10 +1,12 @@
 <script setup>
+import { ref } from "vue";
 import Sidebar from "../components/Sidebar.vue";
 import Topbar from "../components/Topbar.vue";
 import Footer from "../components/Footer.vue";
 import Filter from "../components/Filter.vue";
-
 import LineChart from "../components/LineChart.vue";
+
+const route = ref(["user", "gold", "metalpay", "gtm", "ticketing", "ziswaf"]);
 </script>
 
 <template>
@@ -30,15 +32,13 @@ import LineChart from "../components/LineChart.vue";
             </span>
           </div>
           <!-- content -->
-          <div
-            class="d-flex justify-content-sm-center justify-content-md-start"
-          >
-            <LineChart :route="'user'" />
-            <LineChart :route="'gold'" />
-            <LineChart :route="'gtm'" />
+          <div class="d-flex flex-row flex-wrap justify-content-center">
+            <template v-for="item in route">
+              <LineChart :route="item" class="m-3" style="width: 500px" />
+            </template>
           </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
     </div>
   </div>
