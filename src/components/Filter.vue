@@ -8,22 +8,23 @@ const monitoringStore = useMonitoringStore();
 const selected = ref();
 const datepicker = ref(null);
 
+// handle month and year for weekly
 const handleMonthYear = ({ instance, month, year }) => {
-  // console.log("month", month);
-  // console.log("year", year);
-  monitoringStore.setWeek(month, year);
+  monitoringStore.setMonthYearInWeek(month, year);
 };
 
+// handle date for weekly
 const handleInternal = (date) => {
-  // console.log("date", date);
-  monitoringStore.setDate(date);
+  monitoringStore.setWeek(date);
 };
 
+// filter data
 function filter() {
   monitoringStore.fetchData();
 }
 
 onMounted(() => {
+  // get selected value for filter
   selected.value = monitoringStore.getSelected;
 });
 </script>

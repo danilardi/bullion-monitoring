@@ -6,7 +6,7 @@ import Footer from "../components/Footer.vue";
 import Filter from "../components/Filter.vue";
 import LineChart from "../components/LineChart.vue";
 
-const route = ref(["user", "gold", "metalpay", "gtm", "ticketing", "ziswaf"]);
+const route = ref(["user", "gold", "metalpay", "gtm", "ticketing", "ziswaf"]); // route monitoring
 </script>
 
 <template>
@@ -25,20 +25,23 @@ const route = ref(["user", "gold", "metalpay", "gtm", "ticketing", "ziswaf"]);
               Dashboard
             </h3>
           </div>
-          <!-- filter -->
+
+          <!-- filter button-->
           <div class="page-header">
             <span class="page-title d-flex">
               <Filter />
             </span>
           </div>
+
           <!-- content -->
           <div class="d-flex flex-row flex-wrap justify-content-center">
+            <!-- load linechart for all route -->
             <template v-for="item in route">
               <LineChart :route="item" class="m-3" style="width: 500px" />
             </template>
           </div>
-          <Footer />
         </div>
+        <Footer />
       </div>
     </div>
   </div>

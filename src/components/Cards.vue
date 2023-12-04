@@ -1,9 +1,8 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useMonitoringStore } from "@/stores/monitoring";
 
 const monitoringStore = useMonitoringStore();
-
 const props = defineProps(["route"]);
 
 const data = computed(() => {
@@ -20,6 +19,7 @@ const onMountedLoaded = computed(() => {
 </script>
 
 <template>
+  <!-- Show card for each platform -->
   <div
     class="mb-4 d-md-none"
     v-if="onMountedLoaded"
@@ -27,6 +27,7 @@ const onMountedLoaded = computed(() => {
   >
     <h4>{{ platform }}</h4>
     <div v-dragscroll class="d-flex overflow-x-auto">
+      <!-- show card for each time -->
       <div class="card m-3" style="min-width: 200px" v-for="time in data.time">
         <div class="card-body">
           <h5 class="card-title text-center">{{ time }}</h5>
@@ -34,6 +35,7 @@ const onMountedLoaded = computed(() => {
             <div class="d-flex justify-content-between">
               <p class="card-text">{{ tipe }}</p>
               <p>
+                <!-- show data -->
                 <b>{{ data.data[platform][time][tipe] }}</b>
               </p>
             </div>

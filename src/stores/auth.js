@@ -4,18 +4,23 @@ import request from '@/util/request'
 
 export const useAuthStore = defineStore('auth', () => {
 
+    // set default value for auth
     if (localStorage.getItem('auth') == null) {
         localStorage.setItem('auth', JSON.stringify({
             access_token: '',
             fullname: '',
         }))
     }
+
+    // set value for state
     const access_token = ref(JSON.parse(localStorage.getItem('auth')).access_token)
     const fullname = ref(JSON.parse(localStorage.getItem('auth')).fullname)
 
+    // getter
     const getAccessToken = computed(() => access_token.value)
     const getFullname = computed(() => fullname.value)
 
+    // action
     async function login(username, password, clientCaptchaKey) {
         const resp = await request({
             url: '/auth/login',

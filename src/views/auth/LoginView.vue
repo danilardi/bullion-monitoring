@@ -4,16 +4,17 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toast-notification";
 
-const $router = useRouter();
-const $toast = useToast();
-const authStore = useAuthStore();
-const form = ref(null);
+const $router = useRouter(); // router navigation
+const $toast = useToast(); // toast notification
+const authStore = useAuthStore(); // auth store
+const form = ref(null); // form reference
 const formModel = ref({
   username: "operator",
   password: "1qAzxSw2",
   clientCaptchaKey: null,
 });
 
+// to login
 function handleLogin() {
   if (form.value.checkValidity()) {
     authStore
@@ -41,6 +42,7 @@ function handleLogin() {
               <div
                 class="col-md-6 col-lg-5 d-flex align-self-center justify-content-center"
               >
+                <!-- login page logo -->
                 <img
                   src="../../assets/logo.svg"
                   alt="login form"
@@ -49,6 +51,7 @@ function handleLogin() {
               </div>
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
+                  <!-- form login -->
                   <form
                     v-on:submit.prevent
                     ref="form"
@@ -64,6 +67,7 @@ function handleLogin() {
                       Sign into your account
                     </h5>
 
+                    <!-- form input username -->
                     <div class="form-outline mb-4">
                       <input
                         type="text"
@@ -74,6 +78,7 @@ function handleLogin() {
                       <label class="form-label" for="username">Username</label>
                     </div>
 
+                    <!-- form input password -->
                     <div class="form-outline mb-4">
                       <input
                         type="password"
@@ -84,6 +89,7 @@ function handleLogin() {
                       <label class="form-label" for="password">Password</label>
                     </div>
 
+                    <!-- button login -->
                     <div class="pt-1 mb-4">
                       <button
                         class="btn btn-success btn-lg btn-block"

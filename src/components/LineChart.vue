@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 import { Line } from "vue-chartjs";
 import { useMonitoringStore } from "@/stores/monitoring";
-import { clearText } from "../util/text";
+import { clearText, convertStringToNumber } from "../util/text";
 import {
   Chart,
   Legend,
@@ -27,31 +27,29 @@ Chart.register(
 );
 
 const monitoringStore = useMonitoringStore();
-
-const props = defineProps(["route"]);
-
-const chartColor = ref(["#2aa198", "#a93278", "#3759b2"]);
-
-const selected = ref("1");
-
-const cek = ref({ data: [], dataLoad: false });
-
+const props = defineProps(["route"]); // route for get data from api
+const chartColor = ref(["#2aa198", "#a93278", "#3759b2"]); // color for chart
+const selected = ref("1"); // selected type
+const filterPlatform = ref({ data: [], dataLoad: false }); // filter platform
 const data = computed(() => {
+  // data from api
   return monitoringStore.getData(props.route);
 });
 
+// check if data from api is loaded
 const onMountedLoaded = computed(() => {
   if (data.value == null || data.value.data == null) {
     return false;
   } else {
-    if (cek.value.dataLoad == false) {
-      cek.value.dataLoad = true;
-      cek.value.data = data.value.platform;
+    if (filterPlatform.value.dataLoad == false) {
+      filterPlatform.value.dataLoad = true;
+      filterPlatform.value.data = data.value.platform;
     }
     return true;
   }
 });
 
+// check if dataset from api is loaded
 const onDatasetLoaded = computed(() => {
   if (data.value.total == null) {
     return false;
@@ -60,11 +58,13 @@ const onDatasetLoaded = computed(() => {
   }
 });
 
+// data for chart
 const dataChart = computed(() => {
-  const labels = data.value.time;
+  const labels = data.value.time; // set label for chart
   const datasets = [];
   data.value.total = {};
 
+  // check if data from api is null
   if (data.value.data == null) {
     return {
       labels,
@@ -72,7 +72,8 @@ const dataChart = computed(() => {
     };
   }
 
-  cek.value.data.forEach((platform) => {
+  // set dataset for chart
+  filterPlatform.value.data.forEach((platform) => {
     const temp = [];
     Object.keys(data.value.data[platform]).forEach((time) => {
       temp.push(
@@ -97,6 +98,7 @@ const dataChart = computed(() => {
   };
 });
 
+// options for chart
 const optionschart = computed(() => ({
   responsive: true,
   plugins: {
@@ -107,18 +109,24 @@ const optionschart = computed(() => ({
 }));
 
 onMounted(() => {
+  // push route to store
   monitoringStore.pushRoute(props.route);
+
+  // fetch data from api
   monitoringStore.fetchData();
 });
 </script>
 
 <template>
+  <!-- render component if data loaded -->
   <div v-if="onMountedLoaded" class="card shadow card-product">
     <div class="card-body">
       <h5 class="card-title fw-bold">
+        <!-- Chart Name -->
         <i class="bi bi-person me-2"></i>{{ clearText(props.route) }} Details
       </h5>
       <div v-if="onMountedLoaded" class="d-flex m-2">
+        <!-- select the type to display -->
         <select class="form-select" aria-label="select type" v-model="selected">
           <template v-for="(tipe, index) in data.type">
             <option :value="index + 1">
@@ -129,12 +137,13 @@ onMounted(() => {
       </div>
 
       <div
-        class="btn-group d-flex justify-content-center"
+        class="btn-group d-flex justify-content-evenly align-items-center"
         role="group"
         aria-label="Basic checkbox toggle button group"
       >
+        <!-- checkbox for filter platform to display -->
         <template v-for="(platform, index) in data.platform">
-          <div class="form-check form-switch ms-4 me-4">
+          <div class="form-check form-switch">
             <input
               type="checkbox"
               class="form-check-input"
@@ -142,7 +151,7 @@ onMounted(() => {
               :value="platform"
               autocomplete="off"
               checked
-              v-model="cek.data"
+              v-model="filterPlatform.data"
             />
             <label class="form-check-label" :for="`btncheck${index + 2}`">{{
               clearText(platform)
@@ -151,11 +160,12 @@ onMounted(() => {
         </template>
       </div>
 
+      <!-- display total for each platform -->
       <div
-        class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-center align-items-center"
+        class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-evenly align-items-center"
       >
         <div
-          class="d-flex align-items-center ms-4 me-4"
+          class="d-flex align-items-center"
           v-for="platform in data.platform"
         >
           <div
@@ -168,12 +178,14 @@ onMounted(() => {
           </div>
           <div class="flex-row">
             <div class="fw-bold" v-if="onDatasetLoaded">
-              {{ data.total[platform] }}
+              {{ convertStringToNumber(data.total[platform]) }}
             </div>
             <div class="text-muted">Total</div>
           </div>
         </div>
       </div>
+
+      <!-- display chart -->
       <div style="height: 90%">
         <Line
           v-if="onMountedLoaded"

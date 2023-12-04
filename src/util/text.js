@@ -8,7 +8,8 @@ export function clearText(text) {
     return result.trim();
 }
 
-export function convertNumberToCurrency(number) {
+export function convertStringToNumber(number) {
     // convert number to currency format
+    if (number === null || number === undefined) return '';
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }

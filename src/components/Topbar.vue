@@ -37,6 +37,7 @@ function logout() {
       >
     </div>
     <div class="navbar-menu-wrapper flex-md-fill">
+      <!-- button logout -->
       <ul class="navbar-nav flex-row ms-auto align-items-center">
         <li class="nav-item">
           <button
@@ -55,6 +56,7 @@ function logout() {
       id="navbarOffcanvasLg"
       aria-labelledby="navbarOffcanvasLgLabel"
     >
+      <!-- offcanvas -->
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
           Bullion Monitoring
@@ -98,14 +100,34 @@ function logout() {
                   class="accordion-collapse collapse show"
                 >
                   <div class="accordion-body">
-                    <li class="nav-tem">
+                    <li class="nav-item">
                       <router-link class="nav-link" to="/monitoring/user">
                         <span class="menu-title">User</span>
                       </router-link>
                     </li>
-                    <li class="nav-tem">
+                    <li class="nav-item">
                       <router-link class="nav-link" to="/monitoring/fisikEmas">
                         <span class="menu-title">Fisik Emas</span>
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link class="nav-link" to="/monitoring/ticketing">
+                        <span class="menu-title">Ticketing</span>
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link class="nav-link" to="/monitoring/metalpay">
+                        <span class="menu-title">Metalpay</span>
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link class="nav-link" to="/monitoring/ziswaf">
+                        <span class="menu-title">Ziswaf</span>
+                      </router-link>
+                    </li>
+                    <li class="nav-item">
+                      <router-link class="nav-link" to="/monitoring/gtm">
+                        <span class="menu-title">GTM</span>
                       </router-link>
                     </li>
                   </div>

@@ -9,9 +9,10 @@ import LineChart from "@/components/LineChart.vue";
 
 import { ref } from "vue";
 
-const table = ref(null);
+const table = ref(null); // ref to table component
 const route = ref("gold");
 
+// download table
 function downloadTable() {
   table.value.ExportToExcel("xlsx");
 }
@@ -36,7 +37,7 @@ function downloadTable() {
                 <li class="breadcrumb-item active" aria-current="page">User</li>
               </ol>
             </nav>
-            <!-- Button Download -->
+            <!-- Button Download table-->
             <span>
               <button class="btn btn-success" @click="downloadTable">
                 <i class="bi bi-filetype-csv me-2"></i>Download

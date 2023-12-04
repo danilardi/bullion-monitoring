@@ -2,10 +2,9 @@
 import { ref, computed, onMounted } from "vue";
 import * as XLSX from "xlsx";
 import { useMonitoringStore } from "@/stores/monitoring";
-import { clearText, convertNumberToCurrency } from "../util/text";
+import { clearText, convertStringToNumber } from "../util/text";
 
 const monitoringStore = useMonitoringStore();
-
 const props = defineProps(["route"]);
 
 const onMountedLoaded = computed(() => {
@@ -64,7 +63,7 @@ defineExpose({
           <th scope="row">{{ clearText(tipe) }}</th>
           <template v-for="time in data.time">
             <td class="text-center" v-for="platform in data.platform">
-              {{ convertNumberToCurrency(data.data[platform][time][tipe]) }}
+              {{ convertStringToNumber(data.data[platform][time][tipe]) }}
             </td>
           </template>
         </tr>
