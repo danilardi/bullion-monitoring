@@ -6,6 +6,9 @@ import Table from "@/components/Table.vue";
 import Cards from "@/components/Cards.vue";
 import Filter from "@/components/Filter.vue";
 import LineChart from "@/components/LineChart.vue";
+import LineSingkeleton from "@/components/LineCardsSinkeleton.vue";
+import TableSkeleton from "@/components/TableSkeleton.vue";
+import CardsSkeleton from "@/components/CardsSkeleton.vue";
 
 import { ref } from "vue";
 
@@ -28,10 +31,7 @@ function downloadTable() {
           <!-- breadcrumb -->
           <div class="page-header">
             <nav class="page-title d-flex" aria-label="breadcrumb">
-              <span
-                class="d-flex page-title-icon bg-gradient-primary text-white me-2"
-                ><i class="bi bi-bar-chart-line-fill"></i
-              ></span>
+              <span class="d-flex page-title-icon bg-gradient-primary text-white me-2"><i class="bi bi-bar-chart-line-fill"></i></span>
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">Monitoring</li>
                 <li class="breadcrumb-item active" aria-current="page">User</li>
@@ -39,9 +39,7 @@ function downloadTable() {
             </nav>
             <!-- Button Download table-->
             <span>
-              <button class="btn btn-success" @click="downloadTable">
-                <i class="bi bi-filetype-csv me-2"></i>Download
-              </button>
+              <button class="btn btn-success" @click="downloadTable"><i class="bi bi-filetype-csv me-2"></i>Download</button>
             </span>
           </div>
 
@@ -52,12 +50,28 @@ function downloadTable() {
             </span>
           </div>
           <!-- content -->
-          <Table :route="route" ref="table" />
-          <Cards :route="route" />
+          <Suspense>
+            <Table :route="route" ref="table" />
+            <template #fallback>
+              <TableSkeleton />
+            </template>
+          </Suspense>
+
+          <Suspense>
+            <Cards :route="route" />
+            <template #fallback>
+              <CardsSkeleton />
+            </template>
+          </Suspense>
 
           <!-- Chart -->
           <div class="d-flex justify-content-center mt-5">
-            <LineChart :route="route" style="width: 80%" />
+            <Suspense>
+              <LineChart :route="route" style="width: 80%" />
+              <template #fallback>
+                <LineSingkeleton style="width: 80%" />
+              </template>
+            </Suspense>
           </div>
         </div>
         <Footer />
