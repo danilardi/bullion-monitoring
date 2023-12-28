@@ -3,28 +3,9 @@ import { ref, computed, onMounted } from "vue";
 import { Line } from "vue-chartjs";
 import { useMonitoringStore } from "@/stores/monitoring";
 import { clearText, convertStringToNumber } from "../util/text";
-import {
-  Chart,
-  Legend,
-  Title,
-  Tooltip,
-  LineController,
-  LineElement,
-  PointElement,
-  CategoryScale,
-  LinearScale,
-} from "chart.js";
+import { Chart, Legend, Title, Tooltip, LineController, LineElement, PointElement, CategoryScale, LinearScale } from "chart.js";
 
-Chart.register(
-  Legend,
-  Title,
-  Tooltip,
-  LineController,
-  LineElement,
-  PointElement,
-  CategoryScale,
-  LinearScale
-);
+Chart.register(Legend, Title, Tooltip, LineController, LineElement, PointElement, CategoryScale, LinearScale);
 
 const monitoringStore = useMonitoringStore();
 const props = defineProps(["route"]); // route for get data from api
@@ -76,9 +57,7 @@ const dataChart = computed(() => {
   filterPlatform.value.data.forEach((platform) => {
     const temp = [];
     Object.keys(data.value.data[platform]).forEach((time) => {
-      temp.push(
-        data.value.data[platform][time][data.value.type[selected.value - 1]]
-      );
+      temp.push(data.value.data[platform][time][data.value.type[selected.value - 1]]);
     });
 
     const tempSum = temp.reduce((a, b) => a + b, 0);
@@ -115,6 +94,8 @@ onMounted(() => {
   // fetch data from api
   monitoringStore.fetchData();
 });
+
+await new Promise((res) => setTimeout(res, 2000));
 </script>
 
 <template>
@@ -136,45 +117,21 @@ onMounted(() => {
         </select>
       </div>
 
-      <div
-        class="btn-group d-flex justify-content-evenly align-items-center"
-        role="group"
-        aria-label="Basic checkbox toggle button group"
-      >
+      <div class="btn-group d-flex justify-content-evenly align-items-center" role="group" aria-label="Basic checkbox toggle button group">
         <!-- checkbox for filter platform to display -->
         <template v-for="(platform, index) in data.platform">
           <div class="form-check form-switch">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              :id="`btncheck${index + 2}`"
-              :value="platform"
-              autocomplete="off"
-              checked
-              v-model="filterPlatform.data"
-            />
-            <label class="form-check-label" :for="`btncheck${index + 2}`">{{
-              clearText(platform)
-            }}</label>
+            <input type="checkbox" class="form-check-input" :id="`btncheck${index + 2}`" :value="platform" autocomplete="off" checked v-model="filterPlatform.data" />
+            <label class="form-check-label" :for="`btncheck${index + 2}`">{{ clearText(platform) }}</label>
           </div>
         </template>
       </div>
 
       <!-- display total for each platform -->
-      <div
-        class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-evenly align-items-center"
-      >
-        <div
-          class="d-flex align-items-center"
-          v-for="platform in data.platform"
-        >
-          <div
-            class="container-logo-platform d-flex align-items-center justify-content-center me-2"
-          >
-            <img
-              class="logo-platform"
-              :src="`../../assets/images/${platform}.png`"
-            />
+      <div class="d-flex ms-2 me-2 mt-3 mb-3 justify-content-evenly align-items-center">
+        <div class="d-flex align-items-center" v-for="platform in data.platform">
+          <div class="container-logo-platform d-flex align-items-center justify-content-center me-2">
+            <img class="logo-platform" :src="`../../assets/images/${platform}.png`" />
           </div>
           <div class="flex-row">
             <div class="fw-bold" v-if="onDatasetLoaded">
@@ -187,11 +144,7 @@ onMounted(() => {
 
       <!-- display chart -->
       <div style="height: 90%">
-        <Line
-          v-if="onMountedLoaded"
-          :data="dataChart"
-          :options="optionschart"
-        />
+        <Line v-if="onMountedLoaded" :data="dataChart" :options="optionschart" />
       </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ import Topbar from "../components/Topbar.vue";
 import Footer from "../components/Footer.vue";
 import Filter from "../components/Filter.vue";
 import LineChart from "../components/LineChart.vue";
+import LineSkeleton from "../components/LineCardsSkeleton.vue";
 
 const route = ref(["user", "gold", "metalpay", "gtm", "ticketing", "ziswaf"]); // route monitoring
 </script>
@@ -18,10 +19,7 @@ const route = ref(["user", "gold", "metalpay", "gtm", "ticketing", "ziswaf"]); /
         <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title d-flex">
-              <span
-                class="d-flex page-title-icon bg-gradient-primary text-white me-2"
-                ><i class="bi bi-house-door-fill"></i
-              ></span>
+              <span class="d-flex page-title-icon bg-gradient-primary text-white me-2"><i class="bi bi-house-door-fill"></i></span>
               Dashboard
             </h3>
           </div>
@@ -37,7 +35,12 @@ const route = ref(["user", "gold", "metalpay", "gtm", "ticketing", "ziswaf"]); /
           <div class="d-flex flex-row flex-wrap justify-content-center">
             <!-- load linechart for all route -->
             <template v-for="item in route">
-              <LineChart :route="item" class="m-3" style="width: 500px" />
+              <Suspense>
+                <LineChart :route="item" class="m-3" style="width: 500px" />
+                <template #fallback>
+                  <LineSkeleton class="m-3" style="width: 500px; height: 450px" />
+                </template>
+              </Suspense>
             </template>
           </div>
         </div>

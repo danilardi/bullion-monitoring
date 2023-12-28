@@ -16,15 +16,13 @@ const onMountedLoaded = computed(() => {
     return true;
   }
 });
+
+await new Promise((res) => setTimeout(res, 2000));
 </script>
 
 <template>
   <!-- Show card for each platform -->
-  <div
-    class="mb-4 d-md-none"
-    v-if="onMountedLoaded"
-    v-for="platform in data.platform"
-  >
+  <div class="mb-4 d-md-none" v-if="onMountedLoaded" v-for="platform in data.platform">
     <h4>{{ platform }}</h4>
     <div v-dragscroll class="d-flex overflow-x-auto">
       <!-- show card for each time -->

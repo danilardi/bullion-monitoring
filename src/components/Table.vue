@@ -22,24 +22,20 @@ const data = computed(() => {
 function ExportToExcel(type, fn, dl) {
   var elt = document.getElementById("tbl_exporttable_to_xls");
   var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-  return dl
-    ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" })
-    : XLSX.writeFile(wb, fn || "MySheetName." + (type || "xlsx"));
+  return dl ? XLSX.write(wb, { bookType: type, bookSST: true, type: "base64" }) : XLSX.writeFile(wb, fn || "MySheetName." + (type || "xlsx"));
 }
 
 defineExpose({
   ExportToExcel,
 });
+
+await new Promise((res) => setTimeout(res, 2000));
 </script>
 
 <template>
   <div v-if="!onMountedLoaded">Data Null</div>
   <div class="table-responsive d-none d-md-block">
-    <table
-      v-if="onMountedLoaded"
-      id="tbl_exporttable_to_xls"
-      class="table table-hover table-bordered align-middle text-nowrap"
-    >
+    <table v-if="onMountedLoaded" id="tbl_exporttable_to_xls" class="table table-hover table-bordered align-middle text-nowrap">
       <thead>
         <tr>
           <th scope="col" rowspan="2"></th>
